@@ -1,0 +1,4 @@
+
+submit_ticket:
+    path:     /tickets/submit
+    defaults: { _controller: AppBundle:Sales:submitTicket }
