@@ -1,33 +1,27 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: metinet
- * Date: 1/30/18
- * Time: 3:16 AM
+ * @author Boris Guéry <guery.b@gmail.com>
  */
 
 namespace AppBundle\Forms\Types;
 
-
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TicketSubmissionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('eventName', TextType::class, [
-                'constraints' => [new NotBlank(), new Length(['min' => 1])]
-            ])
+            ->add('eventName', TextType::class)
             ->add('eventDate', DateType::class, [
-                'widget' => 'choice'
+                'data' => new \DateTime('+1 day')
             ])
-            ->add('eventDescription', TextType::class,[
-                'constraints' => [new NotBlank(), new Length(['min' => 50])]
-            ])
+            ->add('eventDescription', TextareaType::class)
             ->add('submit', SubmitType::class, ['label' => 'Submit'])
         ;
     }
