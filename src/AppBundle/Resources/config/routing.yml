@@ -7,6 +7,11 @@ ticket_submission_successful:
     path:     /tickets/submit/success
     defaults: { _controller: AppBundle:Sales:ticketSubmissionSuccessful }
 
-login_submission:
-    path:     /login/submit
-    defaults: { _controller: AppBundle:Login:submitLogin }
+member_sign_up:
+    path:     /members/signup
+    methods: ['GET', 'POST']
+    defaults: { _controller: AppBundle:Members:signUp }
+
+member_sign_up_successful:
+    path:     /members/signup/successful
+    defaults: { _controller: AppBundle:Members:signUpSuccessful }
