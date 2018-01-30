@@ -11,5 +11,5 @@ namespace Tiquette\Domain;
 
 interface AccountRepository
 {
-
+    public function save(Account $account): void;
 }

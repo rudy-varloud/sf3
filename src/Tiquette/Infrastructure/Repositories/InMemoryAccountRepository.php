@@ -1,15 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: metinet
- * Date: 1/29/18
- * Time: 9:22 AM
+ * @author Boris Guéry <guery.b@gmail.com>
  */
 
 namespace Tiquette\Infrastructure\Repositories;
 
+use Tiquette\Domain\Account;
+use Tiquette\Domain\AccountRepository;
+use Tiquette\Domain\Ticket;
+use Tiquette\Domain\TicketRepository;
 
-class InMemoryAccountRepository
+class InMemoryAccountRepository implements AccountRepository
 {
+    private $account = [];
 
+    public function save(Account $account): void
+    {
+        $this->account[] = $account;
+    }
 }
