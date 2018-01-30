@@ -12,5 +12,5 @@ namespace AppBundle\Factory;
 class MemberFactory
 {
 
-    
+
 }
