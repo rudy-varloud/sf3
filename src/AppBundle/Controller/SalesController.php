@@ -39,7 +39,7 @@ class SalesController extends Controller
             return $this->redirectToRoute('ticket_submission_successful');
         }
 
-        return $this->render('@App/Sales/submit_ticket.html.twig', ['violations' => []]);
+        return $this->render('@App/Sales/submit_ticket.html.twig', ['signUpForm' => $memberSignUpForm->createView()]);
     }
 
     public function ticketSubmissionSuccessfulAction(Request $request): Response
