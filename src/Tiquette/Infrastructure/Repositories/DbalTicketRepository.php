@@ -21,11 +21,11 @@ class DbalTicketRepository implements TicketRepository
     public function save(Ticket $ticket): void
     {
         $data = [
-            'event_name'        => $ticket->getEventName(),
+            'event_name' => $ticket->getEventName(),
             'event_description' => $ticket->getEventDescription(),
-            'event_date'        => $ticket->getEventDate()->format('Y-m-d\TH:i:00'),
-            'bought_at_price'   => $ticket->getBoughtAtPrice(),
-            'price_currency'    => 'EUR',
+            'event_date' => $ticket->getEventDate()->format('Y-m-d\TH:i:00'),
+            'bought_at_price' => $ticket->getBoughtAtPrice(),
+            'price_currency' => 'EUR',
         ];
 
         $this->connection->insert('tickets', $data);
