@@ -11,5 +11,6 @@ namespace Tiquette\Domain;
 
 class User
 {
-
+    private $username;
+    private $password;
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Forms\MemberSignUp;
 use AppBundle\Forms\Types\MemberSignUpType;
+use AppBundle\Security\UserAccount;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Validator\ConstraintViolation;
 use Tiquette\Domain\Email;
@@ -31,6 +33,12 @@ class MembersController extends Controller
                 $member = $this->get('member_factory')->fromSignUp($memberSignUp);
 
                 $this->get('repositories.member')->save($member);
+
+                $user = UserAccount::fromMember($member);
+                $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+                $this->get('security.token_storage')->setToken($token);
+                $this->get('session')->set('_security_main', serialize($token));
+
 
                 return $this->redirectToRoute('member_sign_up_successful');
             }

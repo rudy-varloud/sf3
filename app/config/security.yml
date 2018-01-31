@@ -28,3 +28,4 @@ security:
 
     access_control:
         - { path: ^/tickets/submit, roles: ROLE_USER }
+        - { path: ^/tickets/list-all, roles: ROLE_USER }

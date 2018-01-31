@@ -30,4 +30,9 @@ class DbalTicketRepository implements TicketRepository
 
         $this->connection->insert('tickets', $data);
     }
+
+    public function getAllTicket(){
+        $rq = $this->connection->fetchAll('SELECT * FROM tickets');
+        return $rq;
+    }
 }

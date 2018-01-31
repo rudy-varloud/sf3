@@ -11,5 +11,6 @@ namespace AppBundle\Forms;
 
 class MemberSinIn
 {
-
+    public $email;
+    public $password;
 }
