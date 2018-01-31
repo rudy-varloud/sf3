@@ -18,6 +18,8 @@ security:
             security: false
 
         main:
+            pattern: ^/
+            provider: members
             anonymous: ~
             form_login:
                 login_path: member_sign_in
@@ -27,5 +29,6 @@ security:
                 target: homepage
 
     access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/tickets/submit, roles: ROLE_USER }
         - { path: ^/tickets/list-all, roles: ROLE_USER }

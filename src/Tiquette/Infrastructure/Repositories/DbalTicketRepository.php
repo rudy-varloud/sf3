@@ -31,8 +31,37 @@ class DbalTicketRepository implements TicketRepository
         $this->connection->insert('tickets', $data);
     }
 
-    public function getAllTicket(){
-        $rq = $this->connection->fetchAll('SELECT * FROM tickets');
-        return $rq;
+    public function findAll(): array
+    {
+        $query =<<<SQL
+SELECT * FROM tickets;
+SQL;
+
+        $statement = $this->connection->prepare($query);
+        $statement->execute();
+
+        $tickets = [];
+
+        while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+
+            $tickets[] = $this->hydrateFromRow($row);
+        }
+
+        return $tickets;
+    }
+
+    private function hydrateFromRow(array $row): Ticket
+    {
+        return Ticket::fromArray($row);
+    }
+
+    public function findAllNonVendu(){
+        $tickets = $this->connection->fetchAll("SELECT * FROM tickets");
+        return $tickets;
+    }
+
+    public function findByName($eventName){
+        $ticket = $this->connection->fetchAll("SELECT * FROM tickets WHERE event_name ='$eventName'");
+        return $ticket;
     }
 }
