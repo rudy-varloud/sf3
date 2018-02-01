@@ -12,18 +12,31 @@ namespace Tiquette\Domain;
 class Offer
 {
     private $proposition;
+    private $ticketId;
+    private $acheteurId;
     private $price;
+
+    /**
+     * Offer constructor.
+     * @param $proposition
+     * @param $ticketId
+     * @param $acheteurId
+     * @param $price
+     */
+    public function __construct($proposition, $ticketId, $acheteurId, $price)
+    {
+        $this->proposition = $proposition;
+        $this->ticketId = $ticketId;
+        $this->acheteurId = $acheteurId;
+        $this->price = $price;
+    }
 
     /**
      * Offer constructor.
      * @param $proposition
      * @param $price
      */
-    public function __construct($proposition, $price)
-    {
-        $this->proposition = $proposition;
-        $this->price = $price;
-    }
+
 
     /**
      * @return mixed
@@ -39,6 +52,16 @@ class Offer
     public function getPrice()
     {
         return $this->price;
+    }
+
+    public function getTicketId()
+    {
+        return $this->ticketId;
+    }
+
+    public function getAcheteurId()
+    {
+        return $this->acheteurId;
     }
 
 
