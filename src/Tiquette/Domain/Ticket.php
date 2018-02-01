@@ -7,15 +7,21 @@ namespace Tiquette\Domain;
 
 class Ticket
 {
+    private $id;
     private $eventName;
     private $eventDate;
     private $eventDescription;
     private $boughtAtPrice;
 
-    public static function submit(string $eventName, \DateTimeImmutable $eventDate, string $eventDescription,
+    public static function submit(int $id, string $eventName, \DateTimeImmutable $eventDate, string $eventDescription,
         int $boughtAtPrice): self
     {
-        return new self($eventName, $eventDate, $eventDescription, $boughtAtPrice);
+        return new self($id, $eventName, $eventDate, $eventDescription, $boughtAtPrice);
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getEventName(): string
@@ -38,8 +44,9 @@ class Ticket
         return $this->boughtAtPrice;
     }
 
-    private function __construct(string $eventName, \DateTimeImmutable $eventDate, string $eventDescription, int $boughtAtPrice)
+    private function __construct(int $id, string $eventName, \DateTimeImmutable $eventDate, string $eventDescription, int $boughtAtPrice)
     {
+        $this->id = $id;
         $this->eventName = $eventName;
         $this->eventDate = $eventDate;
         $this->eventDescription = $eventDescription;

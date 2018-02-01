@@ -54,7 +54,7 @@ class SalesController extends Controller
 
     public function submitOfferAction(Request $request): Response
     {
-        $eventName = $request->attributes->get('eventName');
+        $id = $request->attributes->get('id');
         $offerSubmission = new OfferSubmission();
 
         $offerSubmissionForm = $this->createForm(OfferSubmissionType::class, $offerSubmission);
@@ -70,7 +70,7 @@ class SalesController extends Controller
             }
         }
 
-        $ticket = $this->get('repositories.ticket')->findByName($eventName);
+        $ticket = $this->get('repositories.ticket')->findByName($id);
 
         return $this->render('@App/Sales/submit_offer.html.twig', ['offerSubmissionForm' => $offerSubmissionForm->createView(), 'monTicket' => $ticket]);
     }

@@ -60,8 +60,8 @@ SQL;
         return $tickets;
     }
 
-    public function findByName($eventName){
-        $ticket = $this->connection->fetchAll("SELECT * FROM tickets WHERE event_name ='$eventName'");
+    public function findByName($id){
+        $ticket = $this->connection->fetchAll("SELECT * FROM tickets WHERE id ='$id'");
         return $ticket;
     }
 }

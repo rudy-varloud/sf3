@@ -3,6 +3,6 @@
 {% block title %}All tickets{% endblock %}
 {% block body %}
         {% for unTicket in tickets %}
-                <li>{{ unTicket.event_name }} - <a href='{{ path('submit_offer', {'eventName': unTicket.event_name}) }}'>Plus d'info</a></li>
+                <li>{{ unTicket.event_name }} - <a href='{{ path('submit_offer', {'id': unTicket.id}) }}'>Plus d'info</a></li>
         {% endfor %}
 {% endblock %}

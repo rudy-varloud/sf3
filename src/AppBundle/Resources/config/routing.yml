@@ -33,5 +33,5 @@ member_list_ticket:
   defaults: { _controller: AppBundle:Sales:listAllTicketsNonVendu}
 
 submit_offer:
-  path:     /tickets/submit-offer/{eventName}
+  path:     /tickets/submit-offer/{id}
   defaults: { _controller: AppBundle:Sales:submitOffer }
