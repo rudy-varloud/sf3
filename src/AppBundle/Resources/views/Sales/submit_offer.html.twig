@@ -1,7 +1,12 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Submit ticket{% endblock %}
+{% block title %}Submit Offer{% endblock %}
 
 {% block body %}
-    {{ form(ticketSubmissionForm) }}
+    {% for unTicket in monTicket %}
+    Name: {{ unTicket.event_name }}<br>
+    Description: {{ unTicket.event_description }}<br>
+    Date: {{ unTicket.event_date }}<br><br><br>
+    {{ form(offerSubmissionForm) }}
+    {% endfor %}
 {% endblock %}
